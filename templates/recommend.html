@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/dist/output.css" rel="stylesheet">
+
+        <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+      tailwind.config = {
+          theme: {
+              extend: {
+                  colors: {
+                      clifford: '#da373d',
+                    }
+                }
+            }
+        }
+        </script>
+  <style type="text/tailwindcss">
+      @layer utilities {
+          .content-auto {
+              content-visibility: auto;
+            }
+        }
+        </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+
+    <title>Document</title>
+    <style>
+        xm{ white-space:pre-wrap; word-wrap:break-word; }
+    </style>
+</head>
+<body>
+
+    <div class="nav flex items-center justify-between gap-4 p-4 text-[20px] h-[10vh] bg-violet-400">
+        <div class="flex items-center ">
+          <a href="/" class="font-semibold cursor-pointer p-4"> Reader.io </a>
+          <a href="/" class=" cursor-pointer p-4"> Home </a>
+   
+        </div>
+        <form class="pr-8 gap-4 flex items-center" action="/search" method="post">
+            <input name="isbn" type="text" placeholder="Search a book" class="bg-gray-200 text-[16px] rounded-md"/>
+            <button type="submit" class="bg-slate-200 hover:bg-slate-300 text-black text-[16px] font-bold py-2 px-4 rounded">Submit</button>
+        </form>
+  
+    </div>
+
+  <div class="bg-[#121212] ">
+    <div class=" flex justify-between  bg-slate-800 border-2">
+
+        <div class="flex flex-col items-center justify-start my-0 pb-10  pt-[54px] px-4 pl-10 w-[33vw] ">
+          <img class="w-[300px] h-[330px] cursor-pointer object-contain" src="{{first_image}}" alt={{name[i]}} />
+          <p class="pt-6 text-[24px] text-center text-white"> {{first_name}} </p>
+          <p class="pt-3 text-[24px] text-slate-300"> {{first_author}}</p>
+        </div>
+
+        <div class="flex flex-col px-10 pb-4 items-start w-[64vw] border-l-2  "> 
+            <p class="text-center mx-auto text-white text-[24px] pt-10 font-semibold">About this book</p>
+            <xm class="text-[20px] font-sans text-white pt-4  " name="content">{{first_content}}</xm>
+        </div>
+  
+  
+      </div>
+    
+
+
+    <div class="pt-[30px] pl-[45px] text-white text-[38px] font-semibold">You might also like</div>
+    <div class=" flex flex-wrap text-white p-8  bg-[#121212] justify-center gap-4 items-center ">
+      {% if name|length == 0 %}
+        <p>Sorry, no results related to your query found </p>
+      {% endif %}
+      {% for i in range(name|length) %}
+      <form action="/recommend" method="post">
+        <div type="submit" class="w-[250px] h-[420px]  bg-slate-800 col-span-1 flex flex-col py-6 items-center justify-between"> 
+        <button>
+            <img class="w-[200px] h-[220px] cursor-pointer object-contain" src="{{image[i]}}" alt={{name[i]}} />
+        </button>
+          <button class="py-3 text-[20px] hover:underline hover:underline-offset-2 	 cursor-pointer text-center">{{name[i]}}</button>
+          <p class="text-slate-300 text-center text-[20px] ">{{author[i]}}</p>
+          <input name="isbn" class="hidden" value="{{isbn[i]}}">
+
+        </div>
+      </form>
+        {% endfor %}
+    </div></div>
+
+    
+        
+  
+  </div>
+
+</body>
+</html>
+
+
+

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="/dist/output.css" rel="stylesheet">
+
+        <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            clifford: '#da373d',
+          }
+        }
+      }
+    }
+  </script>
+  <style type="text/tailwindcss">
+    @layer utilities {
+      .content-auto {
+        content-visibility: auto;
+      }
+    }
+  </style>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp"></script>
+    <title>Document</title>
+</head>
+<body>
+  <div class="bg-[#121212] h-screen">
+    <div class="nav flex items-center justify-between gap-4 p-4 text-[20px] h-[10vh] bg-violet-400">
+      <div class="flex items-center ">
+        <a href="/" class="font-semibold cursor-pointer p-4"> Reader.io </a>
+        <a href="/" class=" cursor-pointer p-4"> Home </a>
+ 
+      </div>
+      <form class="pr-8 gap-4 flex items-center" action="/search" method="post">
+          <input name="isbn" type="text" placeholder="Search a book" class="bg-gray-200 text-[16px] rounded-md"/>
+          <button type="submit" class="bg-slate-200 hover:bg-slate-300 text-black text-[16px] font-bold py-2 px-4 rounded">Submit</button>
+      </form>
+
+    </div>
+
+
+    <div class=" flex flex-wrap text-white p-8  bg-[#121212] justify-center gap-4 items-center ">
+      {% if rec_name|length == 0 %}
+        <p>Sorry, no results related to your query found </p>
+      {% endif %}
+      {% for i in range(rec_name|length) %}
+      <form action="/open_book" method="post">
+        <div type="submit" class="w-[250px] h-[420px]  bg-slate-800 col-span-1 flex flex-col py-6 items-center justify-between"> 
+
+            <img class="w-[200px] h-[220px] cursor-pointer object-contain" src="{{rec_image[i]}}" alt={{rec_name[i]}} />
+
+          <p class="py-3 text-[20px] hover:underline hover:underline-offset-2 	 cursor-pointer text-center">{{rec_name[i]}}</p>
+          <p class="text-slate-300 text-center text-[20px] ">{{rec_author[i]}}</p>
+        </div>
+      </form>
+        {% endfor %}
+    </div></div>
+
+    
+        
+  
+  </div>
+
+</body>
+</html>
+
+
+
