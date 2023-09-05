@@ -8,7 +8,7 @@ from selenium.webdriver.common.by import By
 
 import json
 
-import warnings
+import warning
 
 warnings.filterwarnings("ignore")
 
