@@ -1,10 +1,10 @@
 from flask import Flask,render_template,request
 import pandas as pd
-from selenium import webdriver
+# from selenium import webdriver
 
-from selenium.webdriver.firefox.options import Options
-from thefuzz import fuzz,process
-from selenium.webdriver.common.by import By
+# from selenium.webdriver.firefox.options import Options
+from thefuzz import process
+# from selenium.webdriver.common.by import By
 
 import json
 
