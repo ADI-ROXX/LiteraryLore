@@ -1,4 +1,4 @@
 flask
 pandas
-thefuzz==0.22.1
+thefuzz
 warnings
