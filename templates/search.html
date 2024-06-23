@@ -48,13 +48,14 @@
         <p>Sorry, no results related to your query found </p>
       {% endif %}
       {% for i in range(rec_name|length) %}
-      <form action="/open_book" method="post">
-        <div type="submit" class="w-[250px] h-[420px]  bg-slate-800 col-span-1 flex flex-col py-6 items-center justify-between"> 
-
+      <form action="/recommend" method="post">
+        <div type="submit" class="w-[250px] h-[420px] rounded-lg bg-slate-800 col-span-1 flex flex-col py-6 items-center justify-between"> 
+          <button>
             <img class="w-[200px] h-[220px] cursor-pointer object-contain" src="{{rec_image[i]}}" alt={{rec_name[i]}} />
-
-          <p class="py-3 text-[20px] hover:underline hover:underline-offset-2 	 cursor-pointer text-center">{{rec_name[i]}}</p>
+          </button>
+          <button class="py-3 text-[20px] hover:underline hover:underline-offset-2 	 cursor-pointer text-center">{{rec_name[i]}}</button>
           <p class="text-slate-300 text-center text-[20px] ">{{rec_author[i]}}</p>
+          <input name="isbn" class="hidden" value="{{rec_isbn[i]}}">
         </div>
       </form>
         {% endfor %}
